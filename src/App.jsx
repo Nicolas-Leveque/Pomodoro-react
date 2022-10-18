@@ -1,14 +1,26 @@
-import { useState } from 'react'
-import './App.css'
+import Timer from './components/Timer.jsx'
+import { useState} from "react";
+import SettingsContext from "./SettingsContext.js";
 
 function App() {
-  const [count, setCount] = useState(0)
+    const [ focusMinutes, setFocusMinutes ] = useState(25);
+    const [ pauseMinutes, setPauseMinutes ] = useState(5);
+    const [ showSettings, setShowSettings ] =useState(false);
+    return (
+        <main>
+            <SettingsContext.Provider value={{
+                showSettings,
+                setShowSettings,
+                focusMinutes,
+                setFocusMinutes,
+                pauseMinutes,
+                setPauseMinutes
+            }}>
+                <Timer />
+            </SettingsContext.Provider>
 
-  return (
-    <div className="App">
-      <p>Hello new project</p>
-    </div>
+        </main>
   )
 }
 
-export default App
+export default App;
