@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useContext } from 'react';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-import { Button, Box, Typography, CircularProgress } from '@mui/material';
+import { Button, Box, Typography } from '@mui/material';
 import { Pause, PlayCircle } from '@mui/icons-material';
 import SettingsContext from '../SettingsContext.js';
 import './timer.css';
@@ -75,6 +75,8 @@ function Timer() {
 			<Typography mt={4}>{mode}</Typography>
 			<div className="controls">
 				<Button
+					size='large'
+					variant='outlined'
 					onClick={() => {
 						setPaused(false);
 						pausedRef.current = false;
@@ -83,6 +85,9 @@ function Timer() {
 					<PlayCircle />
 				</Button>
 				<Button
+					size='medium'
+					color='error'
+					variant='outlined'
 					onClick={() => {
 						setPaused(true);
 						pausedRef.current = true;
