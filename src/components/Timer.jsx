@@ -1,9 +1,11 @@
 import { useState, useEffect, useRef, useContext } from 'react';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import useSound from 'use-sound';
 import 'react-circular-progressbar/dist/styles.css';
 import { Button, Box, Typography } from '@mui/material';
 import { Pause, PlayCircle } from '@mui/icons-material';
 import SettingsContext from '../SettingsContext.js';
+import bellSound from '../assets/hand-bells-a-single.wav';
 import './timer.css';
 
 const focusColor = '#E53935'; //red
@@ -20,6 +22,8 @@ function Timer() {
 	const modeRef = useRef(mode);
 	const secondsLeftRef = useRef(secondsLeft);
 
+	const [ changeSound ] = useSound(bellSound)
+
 	function chronometer() {
 		secondsLeftRef.current--;
 		setSecondsLeft(secondsLeftRef.current);
@@ -31,6 +35,7 @@ function Timer() {
 			const nextSeconds =
 				(nextMode === 'focus' ? settings.focusMinutes : settings.pauseMinutes) *
 				60;
+			changeSound();
 			setMode(nextMode);
 			modeRef.current = nextMode;
 			setSecondsLeft(nextSeconds);
