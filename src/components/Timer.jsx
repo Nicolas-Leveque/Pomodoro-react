@@ -68,6 +68,10 @@ function Timer() {
 
 	return (
 		<div className="timer">
+			<Typography
+				mt={4}
+				variant="h2"
+			>{mode}</Typography>
 			<CircularProgressbar
 				value={percentage}
 				text={minutes + ':' + seconds}
@@ -77,7 +81,7 @@ function Timer() {
 					tailColor: 'rgba(255,255,255,0.2)',
 				})}
 			/>
-			<Typography mt={4}>{mode}</Typography>
+
 			<div className="controls">
 				<Button
 					size='large'
@@ -99,6 +103,18 @@ function Timer() {
 					}}
 				>
 					<Pause />
+				</Button>
+				<Button
+					size="medium"
+					variant="outlined"
+					onClick={() => {
+						setPaused(true);
+						pausedRef.current = true;
+						setSecondsLeft(settings.focusMinutes * 60);
+						secondsLeftRef.current = settings.focusMinutes * 60;
+					}}
+				>
+					Reset
 				</Button>
 			</div>
 		</div>
