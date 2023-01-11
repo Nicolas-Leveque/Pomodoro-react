@@ -22,7 +22,7 @@ function Timer() {
 	const modeRef = useRef(mode);
 	const secondsLeftRef = useRef(secondsLeft);
 
-	const [ changeSound ] = useSound(bellSound)
+	const [changeSound] = useSound(bellSound);
 
 	function chronometer() {
 		secondsLeftRef.current--;
@@ -68,15 +68,14 @@ function Timer() {
 
 	return (
 		<div className="timer">
-			<Typography
-				mt={4}
-				variant="h2"
-			>{mode}</Typography>
+			<Typography sx={{ color: '#fffff' }} mt={4} variant="h2">
+				{mode}
+			</Typography>
 			<CircularProgressbar
 				value={percentage}
 				text={minutes + ':' + seconds}
 				styles={buildStyles({
-					textColor: '#fff',
+					textColor: '#fffff',
 					pathColor: mode === 'focus' ? focusColor : pauseColor,
 					tailColor: 'rgba(255,255,255,0.2)',
 				})}
@@ -84,8 +83,8 @@ function Timer() {
 
 			<div className="controls">
 				<Button
-					size='large'
-					variant='outlined'
+					size="large"
+					variant="outlined"
 					onClick={() => {
 						setPaused(false);
 						pausedRef.current = false;
@@ -94,9 +93,9 @@ function Timer() {
 					<PlayCircle />
 				</Button>
 				<Button
-					size='medium'
-					color='error'
-					variant='outlined'
+					size="medium"
+					color="error"
+					variant="outlined"
 					onClick={() => {
 						setPaused(true);
 						pausedRef.current = true;
@@ -110,6 +109,8 @@ function Timer() {
 					onClick={() => {
 						setPaused(true);
 						pausedRef.current = true;
+						setMode('focus');
+						modeRef.current = 'focus';
 						setSecondsLeft(settings.focusMinutes * 60);
 						secondsLeftRef.current = settings.focusMinutes * 60;
 					}}

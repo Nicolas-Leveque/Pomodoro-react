@@ -1,0 +1,6 @@
+{
+  "appId": "com.pomodoro.app",
+  "appName": "Simple-pomodoro",
+  "webDir": "dist",
+  "bundledWebRuntime": false
+}
